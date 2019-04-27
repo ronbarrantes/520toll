@@ -4,12 +4,21 @@
   "description": "I wanna know how much do I have to pay at the 520 bridge right now",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "watch": "nodemon index.js"
   },
   "author": "ronbarrantes",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.19.0",
-    "express": "^4.16.4"
+    "cheerio": "^1.0.0-rc.3",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "node-fetch": "^2.4.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint-plugin-react": "^7.12.4"
   }
 }
