@@ -19,42 +19,60 @@ const gettingChildrenArray = () => {
     .map(child => child.children[1].children[0].data)
 }
 
-fetch(toolLink)
-  .then(res => res.buffer())
-  .then(res => res.toString())
-  .then(html=>{
 
-    const $ = cheerio.load(html)
+app.get('/', (req, res)=>{
 
-    const tables = $('table').find('tbody')
-    const table1 = tables[0].children
-      .map(gettingChildrenArray()
-      )
-    const table2 = tables[1].children
-      .map(gettingChildrenArray()
-      )
+  const rightNow = Date.now()
 
 
-    // .filter((child, i) => i<1)
-    console.log(`
-    ###########################
-    ###########################
-    `)
-    console.log('TABLE --->', table1)
-    console.log(`
-    ###########################
-    ###########################
-    `)
-    console.log('TABLE --->', table2)
-
-    // console.log(html)
-  })
-
-app.get('/', (req,res)=>{
   res.send(
-    'hello'
+    `Hello, Today is ${rightNow}`
   )
 })
+
+app.get('/api/tool', (req, res)=>{
+
+
+})
+
+app.get('/api/toll', (req, res)=>{
+  fetch(toolLink)
+    .then(res => res.buffer())
+    .then(res => res.toString())
+    .then(html=>{
+
+      const $ = cheerio.load(html)
+
+      const tables = $('table').find('tbody')
+      const table1 = tables[0].children
+        .map(gettingChildrenArray()
+        )
+      const table2 = tables[1].children
+        .map(gettingChildrenArray()
+        )
+
+      console.log(`
+    ###########################
+    ###########################
+    `)
+      console.log('TABLE --->', table1)
+      console.log(`
+    ###########################
+    ###########################
+    `)
+      console.log('TABLE --->', table2)
+
+      res.send(
+        'TOOL INFO ON CONSOLE'
+      )
+
+    })
+
+})
+
+
+
+
 
 app.listen(port, ()=>console.log(`RUNNING @ ${port}`))
 
