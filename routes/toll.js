@@ -1,4 +1,5 @@
 const { Router } = require('express')
+const isHoliday = require('../lib/getTodayInfo')
 
 const cheerio = require('cheerio')
 const fetch = require('node-fetch')
@@ -9,6 +10,8 @@ const gettingChildrenArray = () => {
     .filter((child) => child.type === 'tag')
     .map(child => child.children[1].children[0].data)
 }
+
+console.log(isHoliday())
 
 module.exports = new Router()
   .get('/api/toll', (req, res, next)=>{

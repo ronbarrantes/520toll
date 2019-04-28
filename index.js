@@ -10,19 +10,13 @@ const app = express()
 app.use(tollRouter)
 
 app.get('/', (req, res)=>{
-
   const rightNow = Date.now()
-
 
   res.send(
     `Hello, Today is ${rightNow}`
   )
 })
 
-app.get('/api/tool', (req, res)=>{
-
-
-})
 
 
 app.listen(port, ()=>console.log(`RUNNING @ ${port}`))
