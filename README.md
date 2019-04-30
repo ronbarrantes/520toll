@@ -1,4 +1,4 @@
-# 520 Tool
+# 520 Toll
 
 I drive from Seattle to Bellevue all the time, very often, through the 520 bridge, which has a toll... a very high toll.
 
