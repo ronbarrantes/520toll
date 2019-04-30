@@ -1,17 +1,15 @@
 const { Router } = require('express')
-const isHoliday = require('../lib/getTodayInfo')
+const todayInfo = require('../lib/getTodayInfo')
+const getParsedWebData = require('../lib/getParsedWebData')
 
 const cheerio = require('cheerio')
 const fetch = require('node-fetch')
 const toolLink = process.env.TOLL_URI
 
-const gettingChildrenArray = () => {
-  return child => child.children
-    .filter((child) => child.type === 'tag')
-    .map(child => child.children[1].children[0].data)
-}
 
-console.log(isHoliday())
+
+console.log(todayInfo())
+// console.log(getParsedWebData())
 
 module.exports = new Router()
   .get('/api/toll', (req, res, next)=>{
@@ -23,30 +21,38 @@ module.exports = new Router()
         const $ = cheerio.load(html)
 
         const tables = $('table').find('tbody')
-        const table1 = tables[0].children
-          .map(gettingChildrenArray()
-          )
-        const table2 = tables[1].children
-          .map(gettingChildrenArray()
-          )
-        console.log(`
-    ###########################
-    ###########################
-    `)
-        console.log('TABLE --->', table1)
-        console.log(`
-    ###########################
-    ###########################
-    `)
-        console.log('TABLE --->', table2)
 
-        res.send(
-          'TOOL INFO ON CONSOLE'
+        console.log('TABLE 0-->', tables[0])
+
+        const table1 = getParsedWebData(tables[0])
+
+        // console.log('TABLE --->', table1)
+
+        res.json(
+          table1
         )
 
       })
       .catch(next)
   })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   .get('/api/toll/static', (req, res, next)=>{
@@ -64,18 +70,6 @@ module.exports = new Router()
         [ '7 p.m. to 8:59 p.m.', '$2.70', '$4.70' ],
         [ '9 p.m. to 10:59 p.m.', '$2.00', '$4.00' ],
         [ '11 p.m. to 11:59 p.m.', '$1.25', '$3.22' ] ]
-
-    const table2 =
-    [ [ 'Weekends and Holidays**', 'Good To Go! Pass', 'Pay By Mail' ],
-      [ 'Midnight to 4:59 a.m.', '$1.25', '$3.25' ],
-      [ '5 a.m. to 7:59 a.m.', '$1.40', '$3.40' ],
-      [ '8 a.m. to 10:59 a.m.', '$2.05', '$4.05' ],
-      [ '11 a.m. to 5:59 p.m.', '$2.65', '$4.65' ],
-      [ '6 p.m. to 8:59 p.m.', '$2.05', '$4.05' ],
-      [ '9 p.m. to 10:59 p.m.', '$1.40', '$3.40' ],
-      [ '11 p.m. to 11:59 p.m.', '$1.25', '$3.25' ],
-    ]
-
 
     const resultTable = table1
       .filter((child, i)=> i !== 0)
