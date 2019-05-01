@@ -1,3 +1,9 @@
+db
+.env
+temp
+dist
+build
+coverage
 
 # Created by https://www.gitignore.io/api/lua,vim,node,redis,linux,macos,windows,reactnative,visualstudio,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=lua,vim,node,redis,linux,macos,windows,reactnative,visualstudio,visualstudiocode
@@ -338,7 +344,8 @@ buck-out/
 # General
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 

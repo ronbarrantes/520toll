@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600');
+
+*{
+  box-sizing: border-box;
+}
+body{
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0;
+}
+.App {
+  display: flex;
+  flex-wrap: wrap;
+}
+.App h1{
+  text-align: center;
+  font-size: 3em;
+  margin: 0;
+  padding:0;
+  width: 100%;
+}
+.word-guess{
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+  height: 50px;
+  font-size: 2em;
+}
+body{
+  font-family: 'Open Sans', sans-serif;
+  width: 100%;
+}
+.board{
+  width: 100%;
+  min-width: 300px;
+  padding: 20px;
+  display:flex;
+  flex-wrap: wrap;
+
+}
+.board ul{
+  border-radius: 11px;
+  border: 1px solid #000;
+  width: 300px;
+  height: 300px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+.board li {
+  border: 1px solid #222;
+  display: flex;
+  width: calc(100%/4);
+  height: calc(100%/4);
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer ;
+  transition: background-color .2s;
+  border-radius: 10px;
+}
+.board li div{
+  font-size: 2.4em;
+  display: inline-block;
+  border-radius: 10px;
+  vertical-align: middle;
+  width: calc(100%/1.3);
+  height: calc(100%/1.3);
+  line-height: 52px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.board li:hover{
+  background-color: #c384ff;
+}
+.letter-item{
+  color: #000;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, .2) inset;
+}
+.visited{
+  background-color: #fcf;
+}
+.word-list{
+  width: 50%;
+  padding: 0;
+  justify-content: center;
+}
+.word-list ol  {
+  margin: 2px 20%;
+  border: 1px solid #000;
+  background: #eee;
+  border-radius: 5px;
+  min-height: 20px;
+}
+.word-list h3{
+  color: green;
+  text-align: center;
+}
+.word-list:nth-child(odd) h3 {
+  color: #f00;
+}
+.word-list li{
+  font-weight: 600;
+}
+
+.boundary{
+  width: calc(50% - 150px);
+}
+
+.boundary.bottom{
+  width: 100%;
+  height: 50px;
+}
+
+.error{
+  text-align: center;
+  color: red;
+}
+
+@media only screen and (max-width: 350px) {
+  .boundary.sides  {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 500px) {
+  .word-list ol  {
+    margin: 2px 20%;
+  }
+}
+@media only screen and (min-width: 900px) {
+  .board{
+    width: 50%;
+  }
+  .word-list{
+    width: 25%;
+    padding: 10px;
+  }
+
+  .word-list ol{
+    margin: 2px 20%;
+
+  }
+
+}
