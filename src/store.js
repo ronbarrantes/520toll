@@ -2,9 +2,11 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import rootReducer from './reducers'
 
 import logMiddleware from './middleware/log'
+import fetchInfoMiddleware from './middleware/fetchInfo'
 
 const middleware = [
   logMiddleware,
+  fetchInfoMiddleware,
 ]
 
 const composeEnhancers =
