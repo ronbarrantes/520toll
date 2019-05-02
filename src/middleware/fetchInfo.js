@@ -5,7 +5,7 @@ const apiURL = process.env.API_URL
 const fetchInfo = ({ dispatch, getState }) => next => action => {
 
   if(action.type !== FETCH_TOLL_INFO)
-    next(action)
+    return next(action)
 
   fetch(`${apiURL}/api/toll`)
     .then(res => {
