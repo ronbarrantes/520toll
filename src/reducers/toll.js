@@ -1,7 +1,10 @@
 import { createSelector } from 'reselect'
 import { SET_TOLL_INFO } from '../constants/action-types'
 
-const initialState = {}
+const initialState = {
+  todayInfo:{},
+  todaySchedule:{},
+}
 
 const tollReducer = (toll = initialState, action) => {
 
@@ -14,7 +17,7 @@ const tollReducer = (toll = initialState, action) => {
 }
 
 export const tollData = state => {
-  return state.toll
+  return state.toll.todaySchedule
 }
 
 export default tollReducer
