@@ -8,19 +8,20 @@ const toolLink = process.env.TOLL_URI
 
 module.exports = new Router()
   .get('/api/toll', (req, res, next)=>{
-
-    const { isWeekendOrHoliday } = getTodayInfo()
+    const todayInfo = getTodayInfo()
     fetch(toolLink)
       .then(res => res.buffer())
       .then(res => res.toString())
       .then(html=>{
 
         const $ = cheerio.load(html)
-        const rawTable = $('table').find('tbody')[Number(isWeekendOrHoliday)]
+        const rawTable = $('table').find('tbody')[Number(todayInfo.isWeekendOrHoliday)]
         const todaySchedule = getParsedWebData(rawTable)
 
         res.json(
-          todaySchedule
+          { todayInfo,
+            todaySchedule,
+          }
         )
 
       })
