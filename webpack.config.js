@@ -20,6 +20,7 @@ const plugins = [
   }),
   new EnvironmentPlugin({
     NODE_ENV: process.env.NODE_ENV,
+    API_URL: process.env.API_URL,
   }),
   new MiniCssExtractPlugin({
     filename: !production ? '[name].css' : '[name].[hash].css',
