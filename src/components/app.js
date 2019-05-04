@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { fetchTollInfo } from '../actions/toll'
-import { tollData } from '../reducers/toll'
+import { todaySchedule, currentTimeInfo } from '../reducers'
+
+import CurrentTime from './current-time'
+import TodaySchedule from './today-schedule'
 
 
-const App = ({ fetchTollInfo, toll }) => {
+const App = ({ fetchTollInfo, todaySchedule, currentTimeInfo }) => {
+
   useEffect(()=> {
     fetchTollInfo()
   }, [])
@@ -12,19 +16,15 @@ const App = ({ fetchTollInfo, toll }) => {
   return (
     <div className="App">
       <h1>Hello</h1>
-      <ul>
-        {Object.keys(toll).map((spot, i) =>
-          <li key={i}>
-            {toll[spot].schedule}
-          </li>
-        )}
-      </ul>
+      { currentTimeInfo && <CurrentTime currentTimeInfo={currentTimeInfo}  />}
+      <TodaySchedule todaySchedule={todaySchedule}  />
     </div>
   )
 }
 
 const mapStateToProps = state => ({
-  toll: tollData(state),
+  todaySchedule: todaySchedule(state),
+  currentTimeInfo: currentTimeInfo(state),
 })
 
 const mapDispatchToProps = {

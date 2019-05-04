@@ -6,6 +6,8 @@ const rootReducer = combineReducers({
   toll: tollReducer,
 })
 
-export const tollData = (state) => fromTollReducer.tollData(state)
+export const todayInfo = state => fromTollReducer.todayInfo(state)
+export const todaySchedule = state => fromTollReducer.todaySchedule(state)
+export const currentTimeInfo = state => fromTollReducer.currentTimeInfo(state)
 
 export default rootReducer
